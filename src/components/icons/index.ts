@@ -1,0 +1,9 @@
+export { default as IconPlay } from "./IconPlay";
+export { default as IconBook } from "./IconBook";
+export { default as IconCart } from "./IconCart";
+export { default as IconComment } from "./IconComment";
+export { default as IconCourse } from "./IconCourse";
+export { default as IconUsers } from "./IconUsers";
+export { default as IconStar } from "./IconStar";
+export { default as IconEye } from "./IconEye";
+export { default as IconClock } from "./IconClock";
