@@ -7,7 +7,7 @@ export default async function Home() {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const user = await createUser({
     clerkId: "clerk_123",
-    email_adress: "duongtrongtuan@gmail.com",
+    email: "duongtrongtuan@gmail.com",
     userName: "tuanduong1907",
   });
   return (
