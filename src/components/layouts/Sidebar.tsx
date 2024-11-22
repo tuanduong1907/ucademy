@@ -4,10 +4,11 @@ import { TMenuItem } from "@/types";
 import { menuItems } from "@/constants";
 import { ActiveLink } from "../common";
 import { UserButton } from "@clerk/nextjs";
+import { ModeToggle } from "../common/ModeToggle";
 
 const Sidebar = () => {
   return (
-    <aside className="p-5 border-r border-gray-200 bg-white">
+    <aside className="p-5 border-r border-gray-200 bg-white dark:bg-grayDarker dark:border-opacity-10 flex flex-col">
       <div className="font-bold text-3xl">
         <Link href="/" className="inline-block mb-5">
           <span className="text-primary">U</span>cademy
@@ -23,7 +24,10 @@ const Sidebar = () => {
           ></MenuItem>
         ))}
       </ul>
-      <UserButton />
+      <div className="mt-auto flex items-center justify-end gap-5">
+        <ModeToggle></ModeToggle>
+        <UserButton />
+      </div>
     </aside>
   );
 };

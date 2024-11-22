@@ -21,7 +21,7 @@ const CourseItem = () => {
     },
   ];
   return (
-    <div className="bg-white border border-gray-200 rounded-xl p-4 relative">
+    <div className="bg-white dark:bg-grayDarker border border-gray-200 dark:border-opacity-10 rounded-xl p-4 relative">
       <Link href="#" className="absolute inset-0 z-20"></Link>
       <div className=" h-[200px] relative">
         <Image

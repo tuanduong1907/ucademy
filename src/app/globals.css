@@ -2,9 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer base{
-  body{
-    @apply bg-gray-100
+@layer base {
+  body {
+    @apply bg-gray-100 dark:bg-grayDarkest;
+  }
+  :root {
+    --radius: 0.5rem;
   }
 }
 
@@ -19,7 +22,4 @@
       stroke-dashoffset: 0;
     }
   }
-}
-.cl-internal-1dauvpw{
-  display: none !important;
 }
