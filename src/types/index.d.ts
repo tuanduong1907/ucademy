@@ -17,7 +17,7 @@ type TChildren = {
 type TCreateUserParam = {
   clerkId: string;
   userName: string;
-  email_adress: string;
+  email: string;
   name?: string;
   avatar?: string;
 };
