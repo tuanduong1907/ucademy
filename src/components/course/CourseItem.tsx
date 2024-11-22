@@ -21,13 +21,13 @@ const CourseItem = () => {
     },
   ];
   return (
-    <div className="bg-white dark:bg-grayDarker border border-gray-200 dark:border-opacity-10 rounded-xl p-4 relative">
+    <div className="bg-white dark:bg-grayDarker border border-gray-200 dark:border-opacity-10 rounded-xl relative overflow-hiddennpm">
       <Link href="#" className="absolute inset-0 z-20"></Link>
       <div className=" h-[200px] relative">
         <Image
           width={600}
           height={400}
-          className="w-full h-full object-cover rounded-lg"
+          className="w-full h-full object-cover"
           src="https://cdn.dribbble.com/userupload/8256140/file/original-6f5e5527c0fa5298c7718c70164b9c44.png?resize=1024x768&vertical=center"
           alt=""
           sizes="@media (min-width:640) 300px, 100vw"
@@ -36,7 +36,7 @@ const CourseItem = () => {
           New
         </span>
       </div>
-      <div className="pt-4">
+      <div className=" p-4">
         <h3 className="font-bold text-lg mb-3">
           Khóa học Nextjs Pro - Xây dựng E-learning System
         </h3>
