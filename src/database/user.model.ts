@@ -6,12 +6,12 @@ export interface IUser extends Document {
   clerkId: string;
   name: string;
   userName: string;
-  email_adress: string;
+  email: string;
   avatar: string;
   courses: Schema.Types.ObjectId[];
   status: EUserStatus;
   role: EUserRole;
-  createdAt: Date;
+  created_at: Date;
 }
 
 const userSchema = new Schema<IUser>({
@@ -23,9 +23,13 @@ const userSchema = new Schema<IUser>({
   },
   userName: {
     type: String,
+    unique: true,
+    required: true,
   },
-  email_adress: {
+  email: {
     type: String,
+    unique: true,
+    required: true,
   },
   avatar: {
     type: String,
@@ -36,7 +40,7 @@ const userSchema = new Schema<IUser>({
       ref: "Course",
     },
   ],
-  createdAt: {
+  created_at: {
     type: Date,
     default: Date.now,
   },

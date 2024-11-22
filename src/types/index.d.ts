@@ -13,4 +13,13 @@ type TChildren = {
   children: React.ReactNode;
 };
 
-export { TActiveLink, TMenuItem, TChildren };
+// User
+type TCreateUserParam = {
+  clerkId: string;
+  userName: string;
+  email_adress: string;
+  name?: string;
+  avatar?: string;
+};
+
+export { TActiveLink, TMenuItem, TChildren, TCreateUserParam };
