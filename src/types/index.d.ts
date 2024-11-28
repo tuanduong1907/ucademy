@@ -1,20 +1,22 @@
-type TActiveLink = {
+import { ICourse } from "@/database/course.model";
+
+export type TActiveLink = {
   url: string;
   children: React.ReactNode;
 };
 
-type TMenuItem = {
+export type TMenuItem = {
   url: string;
   title: string;
   icon?: React.ReactNode;
 };
 
-type TChildren = {
+export type TChildren = {
   children: React.ReactNode;
 };
 
 // User
-type TCreateUserParam = {
+export type TCreateUserParam = {
   clerkId: string;
   userName: string;
   email: string;
@@ -22,4 +24,14 @@ type TCreateUserParam = {
   avatar?: string;
 };
 
-export { TActiveLink, TMenuItem, TChildren, TCreateUserParam };
+// Couse
+export type TCreateCouseParams = {
+  title: string;
+  slug: string;
+  author: string;
+};
+
+export type TUpdateCourseParams = {
+  slug: string;
+  updateData: Partial<ICourse>;
+};

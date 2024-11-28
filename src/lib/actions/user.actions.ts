@@ -1,15 +1,30 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 "use server";
 
 import User, { IUser } from "@/database/user.model";
 import { connectToDatabase } from "../mongoose";
 import { TCreateUserParam } from "@/types";
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export default async function createUser(params: TCreateUserParam) {
+export async function createUser(params: TCreateUserParam) {
   try {
     connectToDatabase();
     const newUser = await User.create(params);
     return newUser;
-  } catch (error) {}
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export async function getUserInfo({
+  userId,
+}: {
+  userId: string;
+}): Promise<IUser | null | undefined> {
+  try {
+    connectToDatabase();
+    const findUser = await User.findOne({ clerkId: userId });
+    if (!findUser) return null;
+    return findUser;
+  } catch (error) {
+    console.log(error);
+  }
 }

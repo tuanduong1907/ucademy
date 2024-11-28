@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
-
-import "./globals.css";
+import { Toaster } from "react-hot-toast";
+import { ThemeProvider } from "@/components/common/ThemProvider";
 import { manrope } from "@/utils";
 import { ClerkProvider } from "@clerk/nextjs";
-import { ThemeProvider } from "@/components/common/ThemProvider";
+import "./globals.css";
 
 export const metadata: Metadata = {
   title: "Ucademy",
@@ -17,18 +17,19 @@ export default function RootLayout({
 }>) {
   return (
     <ClerkProvider>
-    <html lang="en" suppressHydrationWarning>
-      <body className={manrope.className}>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          {children}
-        </ThemeProvider>
-      </body>
-    </html>
-  </ClerkProvider>
+      <html lang="en" suppressHydrationWarning>
+        <body className={manrope.className}>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            {children}
+            <Toaster />
+          </ThemeProvider>
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }

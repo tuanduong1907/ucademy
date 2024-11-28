@@ -11,10 +11,10 @@ import { IconUsers } from "../icons";
 const Sidebar = () => {
   const { userId } = useAuth();
   return (
-    <aside className="p-5 border-r border-gray-200 bg-white dark:bg-grayDarker dark:border-opacity-10 flex flex-col">
+    <aside className="p-5 border-r border-gray-200 bg-white dark:bg-grayDarker dark:border-opacity-10 hidden lg:flex flex-col">
       <div className="font-bold text-3xl">
         <Link href="/" className="inline-block mb-5">
-          <span className="text-primary">U</span>cademy
+          ThucChien<span className="text-primary">Code</span>
         </Link>
       </div>
       <ul className="flex flex-col gap-3">

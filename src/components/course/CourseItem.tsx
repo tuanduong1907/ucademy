@@ -2,15 +2,16 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import { IconClock, IconEye, IconStar } from "../icons";
+import { ICourse } from "@/database/course.model";
 
-const CourseItem = () => {
+const CourseItem = ({ data }: { data: ICourse }) => {
   const courseInfo = [
     {
-      title: "3000",
+      title: data.views,
       icon: (className?: string) => <IconEye className={className}></IconEye>,
     },
     {
-      title: "5.0",
+      title: data?.rating[0],
       icon: (className?: string) => <IconStar className={className}></IconStar>,
     },
     {
@@ -21,8 +22,11 @@ const CourseItem = () => {
     },
   ];
   return (
-    <div className="bg-white dark:bg-grayDarker border border-gray-200 dark:border-opacity-10 rounded-xl relative overflow-hiddennpm">
-      <Link href="#" className="absolute inset-0 z-20"></Link>
+    <div className="bg-white dark:bg-grayDarker border border-gray-200 dark:border-opacity-10 rounded-xl relative overflow-hidden">
+      <Link
+        href={`/course/${data.slug}`}
+        className="absolute inset-0 z-20"
+      ></Link>
       <div className=" h-[200px] relative">
         <Image
           width={600}
@@ -37,9 +41,7 @@ const CourseItem = () => {
         </span>
       </div>
       <div className=" p-4">
-        <h3 className="font-bold text-lg mb-3">
-          Khóa học Nextjs Pro - Xây dựng E-learning System
-        </h3>
+        <h3 className="font-bold text-lg mb-3">{data.title}</h3>
         <div className="flex item-scenter gap-x-3 text-xs text-gray-500">
           {courseInfo.map((item, index) => (
             <div key={index} className="flex items-center gap-x-1">
@@ -48,7 +50,7 @@ const CourseItem = () => {
             </div>
           ))}
           <span className="text-base font-bold text-primary ml-auto">
-            799.00đ
+            {data.price}đ
           </span>
         </div>
       </div>
