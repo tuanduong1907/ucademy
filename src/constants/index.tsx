@@ -86,6 +86,9 @@ export const courseLevelTitle: Record<ECourseLevel, string> = {
 };
 
 export const commonClassName = {
-  status: "border border-current rounded-md font-medium px-3 py-1 select-none",
-  action: "size-8 rounded-md border borderDarkMode flex items-center justify-center bg-gray-100 hover:bg-white transition-all text-gray-500 dark:bg-transparent dark:hover:border-opacity-20"
+  status: "border border-current rounded-md font-medium px-3 py-1 select-none text-xs whitespace-nowrap",
+  action:
+    "size-8 rounded-md border borderDarkMode flex items-center justify-center bg-gray-100 hover:bg-white transition-all text-gray-500 dark:bg-transparent dark:hover:border-opacity-20",
+  paginationButton:
+    "size-10 rounded-md border borderDarkMode bgDarkMode flex items-center justify-center mt-5 hover:text-primary hover:border-primary transition-all font-semibold",
 };

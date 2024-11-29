@@ -34,4 +34,5 @@ export type TCreateCouseParams = {
 export type TUpdateCourseParams = {
   slug: string;
   updateData: Partial<ICourse>;
+  path?: string;
 };

@@ -5,11 +5,14 @@ const config: Config = {
   content: ["./src/**/*.{js,ts,jsx,tsx,mdx}"],
   theme: {
     extend: {
+      screens: {
+        "3xl": "1600px",
+      },
       fontFamily: {
         primary: ["var(--font-manrope)"],
       },
       colors: {
-        primary: "#FF4E88",
+        primary: "#037cc0",
         grayDarkest: "#131316",
         grayDarker: "#212126",
         grayDark: "#9394a1",

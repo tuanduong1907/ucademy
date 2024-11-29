@@ -3,7 +3,7 @@ import { Toaster } from "react-hot-toast";
 import { ThemeProvider } from "@/components/common/ThemProvider";
 import { manrope } from "@/utils";
 import { ClerkProvider } from "@clerk/nextjs";
-import "./globals.css";
+import "./globals.scss";
 
 export const metadata: Metadata = {
   title: "Ucademy",

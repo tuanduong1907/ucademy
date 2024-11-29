@@ -7,14 +7,24 @@ import { ActiveLink } from "../common";
 import { useAuth, UserButton } from "@clerk/nextjs";
 import { ModeToggle } from "../common/ModeToggle";
 import { IconUsers } from "../icons";
+import Image from "next/image";
 
 const Sidebar = () => {
   const { userId } = useAuth();
   return (
     <aside className="p-5 border-r bgDarkMode borderDarkMode hidden lg:flex flex-col fixed top-0 left-0 bottom-0 w-[300px]">
-      <div className="font-bold text-3xl">
-        <Link href="/" className="inline-block mb-5">
-          ThucChien<span className="text-primary">Code</span>
+      <div className="text-3xl">
+        <Link href="/" className="flex items-end mb-5">
+          <Image
+            width={80}
+            height={80}
+            src="/logo.png"
+            alt="logo"
+            className="w-10 h-10"
+          ></Image>
+          <div className="leading-none font-black">
+            hucChien<span className="text-primary">Code</span>
+          </div>
         </Link>
       </div>
       <ul className="flex flex-col gap-3">

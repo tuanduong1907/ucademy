@@ -88,13 +88,13 @@ const page = async ({ params }: { params: { slug: string } }) => {
       <div className="flex flex-col gap-5 sticky top-5 right-0 ">
         <div className="bg-white dark:bg-grayDarker rounded-lg p-5">
           <div className="flex items-center gap-x-2 mb-3">
-            <strong className="text-primary text-xl font-bold">
+            <strong className="text-red-500 text-xl font-bold">
               {data.price.toLocaleString()}đ
             </strong>
             <span className="text-slate-400 line-through text-sm">
               {data.sale_price.toLocaleString()}đ
             </span>
-            <span className="ml-auto inline-block px-3 py-1 rounded-lg bg-primary/10 text-primary font-semibold text-sm">
+            <span className="ml-auto inline-block px-3 py-1 rounded-lg bg-red-500/10 text-red-500 font-semibold text-sm">
               {Math.floor((data.price / data.sale_price) * 100)}%
             </span>
           </div>
