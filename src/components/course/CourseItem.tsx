@@ -32,7 +32,7 @@ const CourseItem = ({ data }: { data: ICourse }) => {
           width={600}
           height={400}
           className="w-full h-full object-cover"
-          src="https://cdn.dribbble.com/userupload/8256140/file/original-6f5e5527c0fa5298c7718c70164b9c44.png?resize=1024x768&vertical=center"
+          src={data.image}
           alt=""
           sizes="@media (min-width:640) 300px, 100vw"
         ></Image>
@@ -50,7 +50,7 @@ const CourseItem = ({ data }: { data: ICourse }) => {
             </div>
           ))}
           <span className="text-base font-bold text-primary ml-auto">
-            {data.price}đ
+            {data.price.toLocaleString()}đ
           </span>
         </div>
       </div>

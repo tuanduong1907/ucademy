@@ -61,6 +61,11 @@ const courseSchema = new Schema<ICourse>({
     enum: Object.values(ECourseStatus),
     default: ECourseStatus.PENDING,
   },
+  level: {
+    type: String,
+    enum: Object.values(ECourseLevel),
+    default: ECourseLevel.BEGINER,
+  },
   created_at: {
     type: Date,
     default: Date.now,

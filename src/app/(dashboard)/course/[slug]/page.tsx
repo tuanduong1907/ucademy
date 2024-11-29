@@ -1,17 +1,25 @@
 import PageNotFound from "@/app/not-found";
-import { IconBook, IconPlay, IconUsers } from "@/components/icons";
+import { IconBook, IconCheck, IconPlay, IconUsers } from "@/components/icons";
 import { Button } from "@/components/ui/button";
+import { courseLevelTitle } from "@/constants";
 import { getCourseBySlug } from "@/lib/actions/couse.action";
+import { getUserInfo } from "@/lib/actions/user.actions";
+import { ECourseStatus, EUserRole } from "@/types/enums";
+import { auth } from "@clerk/nextjs/server";
 import Image from "next/image";
 import React from "react";
 
 const page = async ({ params }: { params: { slug: string } }) => {
+  const { userId }: { userId: string | null } = await auth();
+  if (!userId) return null;
+  const user = await getUserInfo({ userId });
   const data = await getCourseBySlug({ slug: params.slug });
   if (!data) return <PageNotFound></PageNotFound>;
   const videoId = data.intro_url?.split("v=")[1];
-  
+  if (data.status !== ECourseStatus.APPROVED && user?.role !== EUserRole.ADMIN)
+    return <PageNotFound></PageNotFound>;
   return (
-    <div className="grid lg:grid-cols-[2fr,1fr] gap-10">
+    <div className="grid lg:grid-cols-[2fr,1fr] gap-10 items-start">
       <div>
         <div className="relative aspect-video mb-5">
           {data.intro_url ? (
@@ -22,12 +30,12 @@ const page = async ({ params }: { params: { slug: string } }) => {
                 src={`https://www.youtube.com/embed/${videoId}`}
                 title="Phần 1: Giới Thiệu Dự Án | Thực Chiến Xây Dựng Website SOISCAM Với HTML, CSS, JavaScript"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                className="w-full h-full object-fill"
+                className="w-full h-full object-fill rounded-lg"
               ></iframe>
             </>
           ) : (
             <Image
-              src="https://cdn.dribbble.com/userupload/8256140/file/original-6f5e5527c0fa5298c7718c70164b9c44.png?resize=1024x768&vertical=center"
+              src={data.image}
               alt=""
               fill
               className="w-full h-full object-cover rounded-lg"
@@ -42,23 +50,29 @@ const page = async ({ params }: { params: { slug: string } }) => {
           <div className="grid grid-cols-4 gap-5">
             <BoxInfo title="Bài học">100</BoxInfo>
             <BoxInfo title="Lượt xem">{data.views}</BoxInfo>
-            <BoxInfo title="Trình độ">Trung bình</BoxInfo>
+            <BoxInfo title="Trình độ">{courseLevelTitle[data.level]}</BoxInfo>
             <BoxInfo title="Thời lượng">100h45p</BoxInfo>
           </div>
         </BoxSection>
         <BoxSection title="Yêu cầu">
-          <div className="leading-normal">
-            {data.info.requirements.map((r, index) => (
-              <div key={index}>{r}</div>
-            ))}
-          </div>
+          {data.info.requirements.map((r, index) => (
+            <div key={index} className="mb-3 flex items-center gap-2">
+              <span className="flex-shrink-0 bg-primary size-5 rounded text-white p-1 flex items-center justify-center">
+                <IconCheck className="size 5"></IconCheck>
+              </span>
+              <span>{r}</span>
+            </div>
+          ))}
         </BoxSection>
         <BoxSection title="Lợi ích">
-          <div className="leading-normal">
-            {data.info.benefits.map((b, index) => (
-              <div key={index}>{b}</div>
-            ))}
-          </div>
+          {data.info.benefits.map((b, index) => (
+            <div key={index} className="mb-3 flex items-center gap-2">
+              <span className="flex-shrink-0 bg-primary size-5 rounded text-white p-1 flex items-center justify-center">
+                <IconCheck className="size 5"></IconCheck>
+              </span>
+              <span>{b}</span>
+            </div>
+          ))}
         </BoxSection>
         <BoxSection title="Q.A">
           <div>
@@ -71,14 +85,14 @@ const page = async ({ params }: { params: { slug: string } }) => {
           </div>
         </BoxSection>
       </div>
-      <div>
+      <div className="flex flex-col gap-5 sticky top-5 right-0 ">
         <div className="bg-white dark:bg-grayDarker rounded-lg p-5">
           <div className="flex items-center gap-x-2 mb-3">
             <strong className="text-primary text-xl font-bold">
-              {data.price}
+              {data.price.toLocaleString()}đ
             </strong>
             <span className="text-slate-400 line-through text-sm">
-              {data.sale_price}
+              {data.sale_price.toLocaleString()}đ
             </span>
             <span className="ml-auto inline-block px-3 py-1 rounded-lg bg-primary/10 text-primary font-semibold text-sm">
               {Math.floor((data.price / data.sale_price) * 100)}%
@@ -135,7 +149,7 @@ function BoxInfo({
   children: React.ReactNode;
 }) {
   return (
-    <div className="bg-white rounded-lg p-5">
+    <div className="bgDarkMode borderDarkMode border rounded-lg p-5">
       <h4 className="text-sm text-slate-400">{title}</h4>
       <h3 className="font-bold">{children}</h3>
     </div>

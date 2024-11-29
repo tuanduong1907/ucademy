@@ -1,5 +1,13 @@
-import { IconBook, IconCart, IconComment, IconCourse, IconPlay, IconUsers } from "@/components/icons";
+import {
+  IconBook,
+  IconCart,
+  IconComment,
+  IconCourse,
+  IconPlay,
+  IconUsers,
+} from "@/components/icons";
 import { TMenuItem } from "@/types";
+import { ECourseLevel, ECourseStatus } from "@/types/enums";
 
 export const menuItems: TMenuItem[] = [
   {
@@ -33,3 +41,51 @@ export const menuItems: TMenuItem[] = [
     icon: <IconComment className="size-5"></IconComment>,
   },
 ];
+
+export const courseStatus: {
+  title: string;
+  value: ECourseStatus;
+  className?: string;
+}[] = [
+  {
+    title: "Đã duyệt",
+    value: ECourseStatus.APPROVED,
+    className: "text-green-500 bg-green-500/5",
+  },
+  {
+    title: "Chờ duyệt",
+    value: ECourseStatus.PENDING,
+    className: "text-orange-500 bg-orange-500/5",
+  },
+  {
+    title: "Từ chối",
+    value: ECourseStatus.REJECTED,
+    className: "text-red-500 bg-red-500/5",
+  },
+];
+
+export const courseLevel: { title: string; value: ECourseLevel }[] = [
+  {
+    title: "Dễ",
+    value: ECourseLevel.BEGINER,
+  },
+  {
+    title: "Trung bình",
+    value: ECourseLevel.INTERMEDIATE,
+  },
+  {
+    title: "Khó",
+    value: ECourseLevel.ADVANCED,
+  },
+];
+
+export const courseLevelTitle: Record<ECourseLevel, string> = {
+  [ECourseLevel.BEGINER]: "Dễ",
+  [ECourseLevel.INTERMEDIATE]: "Trung bình",
+  [ECourseLevel.ADVANCED]: "Khó",
+};
+
+export const commonClassName = {
+  status: "border border-current rounded-md font-medium px-3 py-1 select-none",
+  action: "size-8 rounded-md border borderDarkMode flex items-center justify-center bg-gray-100 hover:bg-white transition-all text-gray-500 dark:bg-transparent dark:hover:border-opacity-20"
+};
