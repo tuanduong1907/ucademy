@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
-import React, { MouseEvent } from "react";
+import React, { MouseEvent, useState } from "react";
 import {
   Accordion,
   AccordionContent,
@@ -16,14 +16,13 @@ import Swal from "sweetalert2";
 import { ILecture } from "@/database/lecture.model";
 import { TCourseUpdateParams } from "@/types";
 import { Input } from "../ui/input";
-import { useImmer } from "use-immer";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const CourseUpdateContent = ({ course }: { course: TCourseUpdateParams }) => {
   const lectures = course.lectures;
   console.log(lectures);
-  const [lectureEdit, setLectureEdit] = useImmer("");
-  const [lectureIndex, setLectureIndex] = useImmer(-1);
+  const [lectureEdit, setLectureEdit] = useState("");
+  const [lectureIdEdit, setLectureIdEdit] = useState("");
 
   const handleAddNewLecture = async () => {
     try {
@@ -87,8 +86,9 @@ const CourseUpdateContent = ({ course }: { course: TCourseUpdateParams }) => {
         },
       });
       if (res?.success) {
-        toast.success("Cập nhât tên chương thành công!");
-        setLectureIndex(-1);
+        toast.success("Cập nhât thành công!");
+        setLectureIdEdit("");
+        setLectureEdit("");
       }
     } catch (error) {
       console.log(error);
@@ -96,21 +96,26 @@ const CourseUpdateContent = ({ course }: { course: TCourseUpdateParams }) => {
   };
   return (
     <div>
-      {lectures.map((lecture: ILecture, index) => (
-        <Accordion className="mb-3" type="single" collapsible key={lecture._id}>
-          <AccordionItem value="item-1">
+      {lectures.map((lecture: ILecture) => (
+        <Accordion
+          className="mb-3"
+          type="single"
+          collapsible={!lectureEdit}
+          key={lecture._id}
+        >
+          <AccordionItem value={lecture._id}>
             <AccordionTrigger>
               <div className="flex items-center gap-3 w-full justify-between pr-5">
-                {index === lectureIndex ? (
+                {lecture._id === lectureIdEdit ? (
                   <>
-                    <div className="w-full">
+                    <div
+                      className="w-full"
+                      onClick={(e) => e.stopPropagation()}
+                    >
                       <Input
                         placeholder="Tên chương"
                         defaultValue={lecture.title}
-                        onChange={(e) => {
-                          e.stopPropagation();
-                          setLectureEdit(() => e.target.value);
-                        }}
+                        onChange={(e) => setLectureEdit(e.target.value)}
                       />
                     </div>
                     <div className="flex gap-2 ">
@@ -124,7 +129,7 @@ const CourseUpdateContent = ({ course }: { course: TCourseUpdateParams }) => {
                         className={commonClassName.action}
                         onClick={(e) => {
                           e.stopPropagation();
-                          setLectureIndex(-1);
+                          setLectureIdEdit("");
                         }}
                       >
                         <IconCancel className="size-5" />
@@ -139,7 +144,7 @@ const CourseUpdateContent = ({ course }: { course: TCourseUpdateParams }) => {
                         className={commonClassName.action}
                         onClick={(e) => {
                           e.stopPropagation();
-                          setLectureIndex(index);
+                          setLectureIdEdit(lecture._id);
                         }}
                       >
                         <IconEdit className="size-5" />

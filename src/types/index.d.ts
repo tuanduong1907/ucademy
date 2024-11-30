@@ -39,11 +39,9 @@ export type TUpdateCourseParams = {
   path?: string;
 };
 
-export type TCourseUpdateParams = {
-  _id: string;
-  slug: string;
-  lectures: ILecture[]
-};
+export interface TCourseUpdateParams extends Omit<ICourse, "lectures"> {
+  lectures: ILecture[];
+}
 
 // Lecture
 export type TCreateLectureParams = {

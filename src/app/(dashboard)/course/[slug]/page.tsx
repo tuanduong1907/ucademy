@@ -14,6 +14,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { ILecture } from "@/database/lecture.model";
 
 const page = async ({ params }: { params: { slug: string } }) => {
   const { userId }: { userId: string | null } = await auth();
@@ -22,6 +23,8 @@ const page = async ({ params }: { params: { slug: string } }) => {
   const data = await getCourseBySlug({ slug: params.slug });
   if (!data) return <PageNotFound></PageNotFound>;
   const videoId = data.intro_url?.split("v=")[1];
+  const lectures = data.lectures || [];
+
   if (data.status !== ECourseStatus.APPROVED && user?.role !== EUserRole.ADMIN)
     return <PageNotFound></PageNotFound>;
   return (
@@ -60,6 +63,18 @@ const page = async ({ params }: { params: { slug: string } }) => {
             <BoxInfo title="Thời lượng">100h45p</BoxInfo>
           </div>
         </BoxSection>
+        <BoxSection title="Nội dung khóa học">
+          <div>
+            {lectures.map((lecture: ILecture, index) => (
+              <Accordion className="mb-3" type="single" collapsible key={index}>
+                <AccordionItem value={lecture._id}>
+                  <AccordionTrigger>{lecture.title}</AccordionTrigger>
+                  <AccordionContent></AccordionContent>
+                </AccordionItem>
+              </Accordion>
+            ))}
+          </div>
+        </BoxSection>
         <BoxSection title="Yêu cầu">
           {data.info.requirements.map((r, index) => (
             <div key={index} className="mb-3 flex items-center gap-2">
@@ -80,6 +95,7 @@ const page = async ({ params }: { params: { slug: string } }) => {
             </div>
           ))}
         </BoxSection>
+
         <BoxSection title="Q.A">
           <div>
             {data.info.qa.map((qa, index) => (
