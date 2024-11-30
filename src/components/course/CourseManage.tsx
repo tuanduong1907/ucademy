@@ -12,7 +12,6 @@ import Image from "next/image";
 import { commonClassName, courseStatus } from "@/constants";
 import { cn } from "@/lib/utils";
 import {
-  IconAdd,
   IconArrowLeft,
   IconArrowRight,
   IconBook,
@@ -27,7 +26,6 @@ import { updateCourse } from "@/lib/actions/couse.action";
 import { ECourseStatus } from "@/types/enums";
 import toast from "react-hot-toast";
 import Heading from "../common/Heading";
-import { Button } from "../ui/button";
 import { Input } from "../ui/input";
 const CourseManage = ({ courses }: { courses: ICourse[] }) => {
   const handleDeleteCourse = (slug: string) => {
@@ -85,14 +83,27 @@ const CourseManage = ({ courses }: { courses: ICourse[] }) => {
   };
   return (
     <>
+      <Link
+        href="/manage/course/new"
+        className="size-10 rounded-full bg-primary flexCenter fixed right-5 bottom-5 animate-bounce"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          strokeWidth={1.5}
+          stroke="currentColor"
+          className="w-6 h-6"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="M12 4.5v15m7.5-7.5h-15"
+          />
+        </svg>
+      </Link>
       <div className="flex flex-col lg:flex-row lg:items-center justify-between mb-10 gap-5">
         <Heading className="flex-shrink-0">Quản lý khóa học</Heading>
-        <Link href="/manage/course/new" className=" mr-auto">
-          <Button variant="primary">
-            Tạo Khóa học
-            <IconAdd className="size-5 "></IconAdd>
-          </Button>
-        </Link>
         <div className="w-full lg:w-[500px]">
           <Input placeholder="Tìm kiếm khóa học..."></Input>
         </div>
@@ -128,7 +139,9 @@ const CourseManage = ({ courses }: { courses: ICourse[] }) => {
                         className="flex-shrink-0 w-20 h-20 rounded-sm object-cover"
                       />
                       <div className="flex flex-col gap-1">
-                        <h3 className="text-sm lg:text-base font-bold">{course.title}</h3>
+                        <h3 className="text-sm lg:text-base font-bold">
+                          {course.title}
+                        </h3>
                         <h4 className="text-sm text-slate-500">
                           {new Date(course.created_at).toLocaleDateString(
                             "vi-VI"

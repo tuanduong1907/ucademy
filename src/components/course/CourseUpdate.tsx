@@ -96,8 +96,6 @@ const CourseUpdate = ({ data }: { data: ICourse }) => {
   });
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values);
-
     setIsSubmitting(true);
     try {
       const res = await updateCourse({

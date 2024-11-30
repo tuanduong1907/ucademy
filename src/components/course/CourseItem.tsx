@@ -7,7 +7,7 @@ import { ICourse } from "@/database/course.model";
 const CourseItem = ({ data }: { data: ICourse }) => {
   const courseInfo = [
     {
-      title: data.views,
+      title: data.views.toLocaleString(),
       icon: (className?: string) => <IconEye className={className}></IconEye>,
     },
     {

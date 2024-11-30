@@ -4,11 +4,8 @@ import React from "react";
 
 const page = async () => {
   const courses = (await getAllCourse()) || [];
-  console.log(courses);
-
   return (
     <div>
-
       <CourseManage
         courses={JSON.parse(JSON.stringify(courses))}
       ></CourseManage>

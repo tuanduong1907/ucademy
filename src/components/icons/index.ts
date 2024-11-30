@@ -13,3 +13,5 @@ export { default as IconEdit } from "./IconEdit";
 export { default as IconDelete } from "./IconDelete";
 export { default as IconArrowLeft } from "./IconArrowLeft";
 export { default as IconArrowRight } from "./IconArrowRight";
+export { default as IconCheck2 } from "./IconCheck2";
+export { default as IconCancel } from "./IconCancel";

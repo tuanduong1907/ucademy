@@ -8,6 +8,12 @@ import { ECourseStatus, EUserRole } from "@/types/enums";
 import { auth } from "@clerk/nextjs/server";
 import Image from "next/image";
 import React from "react";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 
 const page = async ({ params }: { params: { slug: string } }) => {
   const { userId }: { userId: string | null } = await auth();
@@ -49,7 +55,7 @@ const page = async ({ params }: { params: { slug: string } }) => {
         <BoxSection title="Thông tin">
           <div className="grid grid-cols-4 gap-5">
             <BoxInfo title="Bài học">100</BoxInfo>
-            <BoxInfo title="Lượt xem">{data.views}</BoxInfo>
+            <BoxInfo title="Lượt xem">{data.views.toLocaleString()}</BoxInfo>
             <BoxInfo title="Trình độ">{courseLevelTitle[data.level]}</BoxInfo>
             <BoxInfo title="Thời lượng">100h45p</BoxInfo>
           </div>
@@ -77,10 +83,12 @@ const page = async ({ params }: { params: { slug: string } }) => {
         <BoxSection title="Q.A">
           <div>
             {data.info.qa.map((qa, index) => (
-              <div key={index}>
-                <div>{qa.question}</div>
-                <div>{qa.answer}</div>
-              </div>
+              <Accordion className="mb-3" type="single" collapsible key={index}>
+                <AccordionItem value={qa.question}>
+                  <AccordionTrigger>{qa.question}</AccordionTrigger>
+                  <AccordionContent>{qa.answer}</AccordionContent>
+                </AccordionItem>
+              </Accordion>
             ))}
           </div>
         </BoxSection>
