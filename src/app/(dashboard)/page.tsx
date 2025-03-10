@@ -10,6 +10,7 @@ export default async function Home() {
         <CourseItem />
         <CourseItem />
         <CourseItem />
+        
       </CourseGrid>
     </div>
   );
