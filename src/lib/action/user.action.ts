@@ -1,8 +1,8 @@
 "use server";
 
 import User from "@/database/user.model";
-import { connectToDatabase } from "../mongoose";
 import { TCreateUserParams } from "@/types";
+import { connectToDatabase } from "../mongoose";
 
 export default async function createUser(params: TCreateUserParams) {
   try {
