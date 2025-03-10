@@ -42,6 +42,7 @@ export async function POST(req: Request) {
       email: email_addresses[0].email_address,
       avatar: image_url,
     });
+    console.log("Creating user:", msg.data);
     return NextResponse.json({
       message: "OK",
       user,
