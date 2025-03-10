@@ -8,3 +8,12 @@ export type TMenuItems = {
   title: string;
   icon: React.ReactNode;
 };
+
+// User
+export type TCreateUserParams = {
+  clerkId: string;
+  username: string;
+  email_adress: string;
+  name?: string;
+  avatar?: string;
+};

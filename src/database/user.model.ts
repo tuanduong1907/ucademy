@@ -5,12 +5,12 @@ export interface IUser extends Document {
   clerkId: string;
   name: string;
   username: string;
-  email_adress: string;
+  email: string;
   avatar: string;
   status: EUserStatus;
   courses: Schema.Types.ObjectId[];
   role: EUserRole;
-  createdAt: Date;
+  created_at: Date;
 }
 
 const userSchema = new Schema<IUser>({
@@ -22,9 +22,13 @@ const userSchema = new Schema<IUser>({
   },
   username: {
     type: String,
+    unique: true,
+    required: true,
   },
-  email_adress: {
+  email: {
     type: String,
+    unique: true,
+    required: true,
   },
   avatar: {
     type: String,
@@ -45,7 +49,7 @@ const userSchema = new Schema<IUser>({
     enum: Object.values(EUserStatus),
     default: EUserStatus.ACTIVE,
   },
-  createdAt: {
+  created_at: {
     type: Date,
     default: Date.now,
   },
