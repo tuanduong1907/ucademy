@@ -1,4 +1,4 @@
-import createUser from "@/lib/action/user.action";
+import createUser from "@/lib/actions/user.actions";
 import { WebhookEvent } from "@clerk/nextjs/server";
 import { headers } from "next/headers";
 import { NextResponse } from "next/server";
@@ -42,7 +42,6 @@ export async function POST(req: Request) {
       email: email_addresses[0].email_address,
       avatar: image_url,
     });
-    console.log("Creating user:", msg.data);
     return NextResponse.json({
       message: "OK",
       user,

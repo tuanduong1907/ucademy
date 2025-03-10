@@ -1,7 +1,14 @@
-import { IconComment, IconExplore, IconOrder, IconPlay, IconStudy, IconUsers } from "@/components/icons";
-import { TMenuItems } from "@/types";
+import {
+  IconComment,
+  IconExplore,
+  IconOrder,
+  IconPlay,
+  IconStudy,
+  IconUsers,
+} from "@/components/icons";
+import { TMenuItem } from "@/types";
 
-export const menuItems: TMenuItems[] = [
+export const menuItems: TMenuItem[] = [
   {
     url: "/",
     title: "Khám phá",
@@ -10,12 +17,12 @@ export const menuItems: TMenuItems[] = [
   {
     url: "/study",
     title: "Khu vực học tập",
-    icon: <IconExplore className="size-5" />,
+    icon: <IconStudy className="size-5" />,
   },
   {
     url: "/manage/course",
     title: "Quản lý khóa học",
-    icon: <IconStudy className="size-5" />,
+    icon: <IconExplore className="size-5" />,
   },
   {
     url: "/manage/member",

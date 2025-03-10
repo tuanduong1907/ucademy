@@ -1,4 +1,4 @@
-import React, { ComponentProps } from "react";
+import { ComponentProps } from "react";
 
 const IconPlay = (props: ComponentProps<"svg">) => {
   return (
@@ -10,7 +10,11 @@ const IconPlay = (props: ComponentProps<"svg">) => {
       stroke="currentColor"
       {...props}
     >
-      <path strokeLinecap="round" strokeLinejoin="round" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+      />
       <path
         strokeLinecap="round"
         strokeLinejoin="round"

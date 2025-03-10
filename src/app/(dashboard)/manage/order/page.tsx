@@ -1,9 +1,5 @@
-import React from 'react'
+const page = () => {
+  return <div>Manage order</div>;
+};
 
-const ManageCoursePage = () => {
-  return (
-    <div>ManageCoursePage</div>
-  )
-}
-
-export default ManageCoursePage
+export default page;

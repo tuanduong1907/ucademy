@@ -1,14 +1,12 @@
+import { ThemeProvider } from "@/components/common/ThemeProvider";
+import { manrope } from "@/utils";
+import { ClerkProvider } from "@clerk/nextjs";
 import type { Metadata } from "next";
 import "./globals.css";
-import { Manrope } from "next/font/google";
-import { ClerkProvider } from "@clerk/nextjs";
-import { ThemeProvider } from "@/components/common";
-
-const manrope = Manrope({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Ucademy",
-  description: "Nền tảng học lập trình siêu cấp vip pro",
+  description: "Nền tảng học lập trình trực tuyến siêu cấp vip pro",
 };
 
 export default function RootLayout({
@@ -19,9 +17,13 @@ export default function RootLayout({
   return (
     <ClerkProvider>
       <html lang="en">
-        <body className={`${manrope.className}`}>
-          {" "}
-          <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+        <body className={manrope.className}>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
             {children}
           </ThemeProvider>
         </body>

@@ -1,11 +1,11 @@
-export enum EUserStatus {
+enum EUserStatus {
   ACTIVE = "ACTIVE",
   UNACTIVE = "UNACTIVE",
   BANNED = "BANNED",
 }
-
-export enum EUserRole {
+enum EUserRole {
   ADMIN = "ADMIN",
   USER = "USER",
   EXPERT = "EXPERT",
 }
+export { EUserRole, EUserStatus };

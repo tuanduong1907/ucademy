@@ -1,31 +1,20 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-@layer base{
+@layer base {
   body {
-    @apply bg-gray-50 antialiased dark:bg-grayDarkest text-grayDarkest dark:text-white;
+    @apply bg-gray-100 dark:bg-grayDarkest dark:text-white text-grayDarkest;
   }
 }
-
 @layer components {
   .svg-animate {
     stroke-dashoffset: 100;
     stroke-dasharray: 100;
-    animation: dash linear 1.5s forwards;
+    animation: dash 3s linear forwards;
   }
   @keyframes dash {
     to {
       stroke-dashoffset: 0;
     }
-  }
-}
-
-@layer utilities {
-  .bgDarkMode {
-    @apply bg-white dark:bg-grayDarker;
-  }
-  .borderDarkMode {
-    @apply border-gray-200  dark:border-opacity-10;
   }
 }
